@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+  grpc-server:
+    build:
+      context: .
+    image: iamoreira/go-grpc-server
+
+  grpc-client:
+    build:
+      context: .
+    image: iamoreira/go-grpc-client
+    container_name: go-grpc-client
+    entrypoint: tail -f /dev/null
+    links:
+      - grpc-server
